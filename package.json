@@ -1,0 +1,55 @@
+{
+  "name": "@aurghyadip/warframe-cli",
+  "description": "Warframe CLI for the devs who love warframe and also players who would like to get an insight right from the terminal.",
+  "version": "0.1.0",
+  "author": "Aurghyadip Kundu",
+  "bin": {
+    "wfcli": "./bin/run"
+  },
+  "bugs": "https://github.com/aurghya-0/warframe-cli/issues",
+  "dependencies": {
+    "@oclif/command": "^1.6.1",
+    "@oclif/config": "^1.15.1",
+    "@oclif/plugin-help": "^3.0.1",
+    "chalk": "^4.0.0",
+    "cli-columns": "^3.1.2",
+    "cli-table3": "^0.6.0",
+    "warframe-items": "^1.917.0"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1.22.2",
+    "eslint": "^5.16.0",
+    "eslint-config-oclif": "^3.1.0",
+    "globby": "^10.0.2"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json",
+    "/src"
+  ],
+  "homepage": "https://github.com/aurghya-0/warframe-cli",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "oclif": {
+    "commands": "./src/commands",
+    "bin": "wfcli",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "repository": "aurghya-0/warframe-cli",
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json",
+    "posttest": "eslint .",
+    "prepack": "oclif-dev manifest && oclif-dev readme",
+    "test": "echo NO TESTS",
+    "version": "oclif-dev readme && git add README.md"
+  }
+}
