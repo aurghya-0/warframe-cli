@@ -19,7 +19,7 @@ $ npm install -g @aurghyadip/warframe-cli
 $ wfcli COMMAND
 running command...
 $ wfcli (-v|--version|version)
-@aurghyadip/warframe-cli/0.5.29 darwin-x64 node-v12.16.3
+@aurghyadip/warframe-cli/0.5.30 darwin-x64 node-v14.3.0
 $ wfcli --help [COMMAND]
 USAGE
   $ wfcli COMMAND
@@ -31,6 +31,7 @@ USAGE
 * [`wfcli help [COMMAND]`](#wfcli-help-command)
 * [`wfcli mod MOD-NAME`](#wfcli-mod-mod-name)
 * [`wfcli warframe NAME`](#wfcli-warframe-name)
+* [`wfcli weapon NAME`](#wfcli-weapon-name)
 
 ## `wfcli help [COMMAND]`
 
@@ -66,7 +67,7 @@ OPTIONS
   -s, --stats  Shows the stats of the mod.
 ```
 
-_See code: [src/commands/mod.js](https://github.com/aurghya-0/warframe-cli/blob/v0.5.29/src/commands/mod.js)_
+_See code: [src/commands/mod.js](https://github.com/aurghya-0/warframe-cli/blob/v0.5.30/src/commands/mod.js)_
 
 ## `wfcli warframe NAME`
 
@@ -86,5 +87,23 @@ OPTIONS
   -h, --help        Show help for this command
 ```
 
-_See code: [src/commands/warframe.js](https://github.com/aurghya-0/warframe-cli/blob/v0.5.29/src/commands/warframe.js)_
+_See code: [src/commands/warframe.js](https://github.com/aurghya-0/warframe-cli/blob/v0.5.30/src/commands/warframe.js)_
+
+## `wfcli weapon NAME`
+
+Get details of various weapons
+
+```
+USAGE
+  $ wfcli weapon NAME
+
+ARGUMENTS
+  NAME  Name of the weapon
+
+OPTIONS
+  -h, --help        Know more about the command
+  -t, --type=m|p|s  (required) Specify the type of the weapon [Melee='m', Primary='p', Secondary='s']
+```
+
+_See code: [src/commands/weapon.js](https://github.com/aurghya-0/warframe-cli/blob/v0.5.30/src/commands/weapon.js)_
 <!-- commandsstop -->

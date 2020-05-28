@@ -2,7 +2,6 @@ const { Command, flags } = require("@oclif/command");
 const Items = require("warframe-items");
 const Table = require("cli-table3");
 const chalk = require("chalk");
-const columns = require("cli-columns");
 
 class WarframeCommand extends Command {
   static args = [
