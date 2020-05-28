@@ -19,7 +19,7 @@ $ npm install -g @aurghyadip/warframe-cli
 $ wfcli COMMAND
 running command...
 $ wfcli (-v|--version|version)
-@aurghyadip/warframe-cli/0.1.0 darwin-x64 node-v12.16.3
+@aurghyadip/warframe-cli/0.5.29 darwin-x64 node-v12.16.3
 $ wfcli --help [COMMAND]
 USAGE
   $ wfcli COMMAND
@@ -30,7 +30,7 @@ USAGE
 <!-- commands -->
 * [`wfcli help [COMMAND]`](#wfcli-help-command)
 * [`wfcli mod MOD-NAME`](#wfcli-mod-mod-name)
-* [`wfcli warframe`](#wfcli-warframe)
+* [`wfcli warframe NAME`](#wfcli-warframe-name)
 
 ## `wfcli help [COMMAND]`
 
@@ -61,26 +61,30 @@ ARGUMENTS
   MOD-NAME  Name of the mod you are searching
 
 OPTIONS
-  -n, --name=name  name to print
+  -d, --drops  Shows the drop locations for the mod(if any)
+  -h, --help   Help for command
+  -s, --stats  Shows the stats of the mod.
 ```
 
-_See code: [src/commands/mod.js](https://github.com/aurghya-0/warframe-cli/blob/v0.1.0/src/commands/mod.js)_
+_See code: [src/commands/mod.js](https://github.com/aurghya-0/warframe-cli/blob/v0.5.29/src/commands/mod.js)_
 
-## `wfcli warframe`
+## `wfcli warframe NAME`
 
-Describe the command here
+Get details of an Warframe
 
 ```
 USAGE
-  $ wfcli warframe
+  $ wfcli warframe NAME
+
+ARGUMENTS
+  NAME  Warframe Name, required
 
 OPTIONS
-  -n, --name=name  name to print
-
-DESCRIPTION
-  ...
-  Extra documentation goes here
+  -a, --abilities   Show abilities
+  -c, --components  Show the components required to build, disables other commands
+  -d, --details     Show stats
+  -h, --help        Show help for this command
 ```
 
-_See code: [src/commands/warframe.js](https://github.com/aurghya-0/warframe-cli/blob/v0.1.0/src/commands/warframe.js)_
+_See code: [src/commands/warframe.js](https://github.com/aurghya-0/warframe-cli/blob/v0.5.29/src/commands/warframe.js)_
 <!-- commandsstop -->

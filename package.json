@@ -1,7 +1,7 @@
 {
   "name": "@aurghyadip/warframe-cli",
   "description": "Warframe CLI for the devs who love warframe and also players who would like to get an insight right from the terminal.",
-  "version": "0.1.0",
+  "version": "0.5.29",
   "author": "Aurghyadip Kundu",
   "bin": {
     "wfcli": "./bin/run"
