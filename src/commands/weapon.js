@@ -17,6 +17,14 @@ class WeaponCommand extends Command {
     const weapon = weapons.find((w) => {
       return w.name.toLowerCase() === args["name"].toLowerCase();
     });
+    if (!weapon) {
+      this.log(
+        chalk.bgRedBright.whiteBright(
+          "WEAPON NOT FOUND IN " + flags.type.toUpperCase()
+        )
+      );
+      return;
+    }
     let table = new Table();
     table.push(
       [
@@ -75,15 +83,6 @@ class WeaponCommand extends Command {
         ["Magazine Size", weapon.magazineSize]
       );
     } else if (flags.type === "Melee") {
-      // "range": 2.5,
-      // "slamAttack": 447,
-      // "slamRadialDamage": 149,
-      // "slamRadius": 7,
-      // "slideAttack": 149,
-      // "heavyAttackDamage": 745,
-      // "heavySlamAttack": 596,
-      // "heavySlamRadialDamage": 596,
-      // "heavySlamRadius": 8,
       table.push(
         [
           {
