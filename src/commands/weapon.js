@@ -18,20 +18,6 @@ class WeaponCommand extends Command {
       return w.name.toLowerCase() === args["name"].toLowerCase();
     });
     let table = new Table();
-    /**
-     * Common props
-     * name
-     * secondsPerShot
-     * totalDamage
-     * damagePerSecond
-     * description
-     * criticalChance
-     * criticalMultiplier
-     * procChance
-     * buildPrice
-     * buildTime
-     */
-
     table.push(
       [
         {
@@ -40,27 +26,80 @@ class WeaponCommand extends Command {
           hAlign: "center",
         },
       ],
+      ["Mastery Requirement", weapon.masteryReq],
       ["Time Per Attack", weapon.secondsPerShot.toFixed(2) + "s"],
       ["Total Damage", weapon.totalDamage],
+      ["DPS", weapon.damagePerSecond],
       [
         "Crit Chance",
         `${(weapon.criticalChance * 100).toFixed(2).toString()}%`,
       ],
-      ["Crit Multi", weapon.criticalMultiplier]
+      ["Crit Multi", weapon.criticalMultiplier],
+      ["Status Chance", `${(weapon.procChance * 100).toFixed(2)}%`],
+      ["Build Price", weapon.buildPrice + " credits"],
+      ["Build Time", `${weapon.buildTime / (60 * 60)} Hours`]
     );
 
     if (flags.type === "Primary") {
-      /**
-       * secondsPerShot
-       * magazineSize
-       * noise
-       * reloadTime
-       * Unique props
-       * fireRate
-       * accuracy
-       */
+      table.push(
+        [
+          {
+            content: chalk.bgBlueBright.whiteBright("Primary Weapon Details"),
+            colSpan: 2,
+            hAlign: "center",
+          },
+        ],
+        ["Magazine Size", weapon.magazineSize],
+        ["Noise", weapon.noise],
+        ["Trigger", weapon.trigger],
+        ["Multishot", weapon.multishot],
+        ["Reload Time", weapon.reloadTime],
+        ["Magazine Size", weapon.magazineSize]
+      );
     } else if (flags.type === "Secondary") {
-    } else if (flags.type === "Meleee") {
+      table.push(
+        [
+          {
+            content: chalk.bgMagentaBright.whiteBright(
+              "Secondary Weapon Details"
+            ),
+            colSpan: 2,
+            hAlign: "center",
+          },
+        ],
+        ["Magazine Size", weapon.magazineSize],
+        ["Noise", weapon.noise],
+        ["Trigger", weapon.trigger],
+        ["Multishot", weapon.multishot],
+        ["Reload Time", weapon.reloadTime],
+        ["Magazine Size", weapon.magazineSize]
+      );
+    } else if (flags.type === "Melee") {
+      // "range": 2.5,
+      // "slamAttack": 447,
+      // "slamRadialDamage": 149,
+      // "slamRadius": 7,
+      // "slideAttack": 149,
+      // "heavyAttackDamage": 745,
+      // "heavySlamAttack": 596,
+      // "heavySlamRadialDamage": 596,
+      // "heavySlamRadius": 8,
+      table.push(
+        [
+          {
+            content: chalk.bgRedBright.whiteBright("Melee Weapon Details"),
+            colSpan: 2,
+            hAlign: "center",
+          },
+        ],
+        ["Slam Attack Damage", weapon.slamAttack],
+        ["Range", weapon.range.toFixed(2) + " mtrs"],
+        ["Slam Radius", weapon.slamRadius + " mtrs"],
+        ["Slide Attack Damage", weapon.slideAttack],
+        ["Heavy Attack Damage", weapon.heavyAttackDamage],
+        ["Heavy Slam Damage", weapon.heavySlamAttack],
+        ["Heavy Slam Radius", weapon.heavySlamRadius.toFixed(2) + " mtrs"]
+      );
     }
     this.log(table.toString());
   }
