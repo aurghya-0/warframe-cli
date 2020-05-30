@@ -1,12 +1,13 @@
 const { Command, flags } = require("@oclif/command");
+const { cli } = require("cli-ux");
 const inquirer = require("inquirer");
 const axios = require("axios");
 const Table = require("cli-table3");
+const chalk = require("chalk");
 
 class StatusCommand extends Command {
   async run() {
     const { flags } = this.parse(StatusCommand);
-    const res = await axios.get("https://api.warframestat.us/pc");
     let query = flags.query;
     if (!flags.query) {
       let responses = await inquirer.prompt([
@@ -14,11 +15,13 @@ class StatusCommand extends Command {
           name: "query",
           message: "Select what you want to know.",
           type: "list",
-          choices: [{ name: "baro" }, { name: "cycle" }],
+          choices: [{ name: "baro" }, { name: "cycle" }, { name: "sortie" }],
         },
       ]);
       query = responses.query;
     }
+    cli.action.start("Loading data");
+    const res = await axios.get("https://api.warframestat.us/pc");
     let worldStateData = res.data;
     let table = new Table();
     // Day/Night Cycle
@@ -47,9 +50,9 @@ class StatusCommand extends Command {
           { content: vallisCycle.timeLeft, hAlign: "left" },
         ]
       );
+      cli.action.stop();
       this.log(table.toString());
-    }
-    if (query === "baro") {
+    } else if (query === "baro") {
       const { voidTrader } = worldStateData;
       if (!voidTrader.active) {
         table.push(
@@ -57,10 +60,35 @@ class StatusCommand extends Command {
           { Status: "Not Active" },
           { "Coming In": voidTrader.startString }
         );
+        cli.action.stop();
         this.log(table.toString());
       } else {
         //TODO: Wait till BARO arrives and get the ineventory structure from the api
         console.log(voidTrader.inventory);
+      }
+    } else if (query === "sortie") {
+      const { sortie } = worldStateData;
+      if (!sortie.active) {
+        this.log("No sortie is currently active");
+      } else {
+        const { variants } = sortie;
+        variants.forEach((variant, index) => {
+          table.push(
+            [{ content: `Sortie ${index + 1}`, colSpan: 2, hAlign: "center" }],
+            [{ content: "Modifier" }, { content: variant.modifier }],
+            [{ content: "Mission Type" }, { content: variant.missionType }],
+            [{ content: "Node" }, { content: variant.node }]
+          );
+        });
+        table.push([
+          {
+            content: chalk.redBright(sortie.boss),
+            colSpan: 2,
+            hAlign: "center",
+          },
+        ]);
+        cli.action.stop();
+        this.log(table.toString());
       }
     }
   }
@@ -72,7 +100,7 @@ StatusCommand.flags = {
   query: flags.string({
     char: "q",
     description: "option to get the details for",
-    options: ["baro", "cycle"],
+    options: ["baro", "cycle", "sortie"],
   }),
   help: flags.help({ char: "h", description: "Get help for this command" }),
 };

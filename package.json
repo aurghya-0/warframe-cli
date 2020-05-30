@@ -15,6 +15,7 @@
     "chalk": "^4.0.0",
     "cli-columns": "^3.1.2",
     "cli-table3": "^0.6.0",
+    "cli-ux": "^5.4.6",
     "inquirer": "^7.1.0",
     "warframe-items": "^1.917.0",
     "warframe-worldstate-parser": "^2.14.0"
