@@ -30,6 +30,7 @@ USAGE
 <!-- commands -->
 * [`wfcli help [COMMAND]`](#wfcli-help-command)
 * [`wfcli mod MOD-NAME`](#wfcli-mod-mod-name)
+* [`wfcli status`](#wfcli-status)
 * [`wfcli warframe NAME`](#wfcli-warframe-name)
 * [`wfcli weapon NAME`](#wfcli-weapon-name)
 
@@ -68,6 +69,24 @@ OPTIONS
 ```
 
 _See code: [src/commands/mod.js](https://github.com/aurghya-0/warframe-cli/blob/v0.6.1/src/commands/mod.js)_
+
+## `wfcli status`
+
+Describe the command here
+
+```
+USAGE
+  $ wfcli status
+
+OPTIONS
+  -n, --name=name  name to print
+
+DESCRIPTION
+  ...
+  Extra documentation goes here
+```
+
+_See code: [src/commands/status.js](https://github.com/aurghya-0/warframe-cli/blob/v0.6.1/src/commands/status.js)_
 
 ## `wfcli warframe NAME`
 
